@@ -27,9 +27,12 @@ func main() {
 	// login
 	r.POST("/login", controllers.Login)
 	// jwt
-	a := r.Group("/web ")
-	a.Use(auth.AuthHandler)
+	// ✅ Grupa z autoryzacją JWT
+	web := r.Group("/web")
+	web.Use(auth.AuthHandler)
 	{
+		// 🔍 AI analiza
+		web.POST("/analyze", controllers.Analyze)
 	}
 	// ading task
 	r.Run(":8080")
