@@ -12,7 +12,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func Register(c *gin.Context) {
+func Register(c *gin.Context) 
 	var body struct {
 		Name            string `json:"name"`
 		Lastname        string `json:"lastname"`
@@ -59,6 +59,20 @@ func Register(c *gin.Context) {
 		})
 		return
 	}
+
+func Login(c *gin.Context){
+  	var body struct {
+		Name            string `json:"name"`
+    Email           string  `json:"email"`
+    Password        string `json:"password"`
+  }
+
+	if err := c.Bind(&body); err != nil 
+		c.AbortWithStatusJSON(400, gin.H{"error": "Invalid request"})
+		return
+	}
+  var user models.User
+  
 
 	// Generuj JWT token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
