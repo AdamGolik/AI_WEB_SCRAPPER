@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  my_postgres:
+    image: postgres:latest
+    container_name: my_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: webScrapper
+    ports:
+      - "5432:5432" # <- wystawienie portu na localhost
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
+    driver: bridge
