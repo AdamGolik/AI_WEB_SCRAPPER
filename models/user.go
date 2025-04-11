@@ -1,5 +1,7 @@
 package models
 
+import "gorm.io/datatypes"
+
 type User struct {
 	Id       uint      `json:"id" gorm:"primaryKey"`
 	Name     string    `json:"name"`
@@ -10,10 +12,10 @@ type User struct {
 }
 
 type Request struct {
-	Id       uint     `json:"id"`
-	UserID   uint     `json:"userid"` // <- klucz obcy
-	Name     string   `json:"name"`
-	PriceMin *float32 `json:"pricemin"`
-	PriceMax *float32 `json:"pricemax"`
-	URLs     []string `gorm:"type:json" json:"urls"` // <- zapisuje jako JSON array
+	Id       uint           `json:"id"`
+	UserID   uint           `json:"userid"` // <- klucz obcy
+	Name     string         `json:"name"`
+	PriceMin *float32       `json:"pricemin"`
+	PriceMax *float32       `json:"pricemax"`
+	URLs     datatypes.JSON `json:"urls"` // ✅ JSON pole kompatybilne z PostgreSQL
 }

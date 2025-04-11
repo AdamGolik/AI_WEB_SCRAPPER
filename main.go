@@ -1,7 +1,6 @@
 package main
 
 import (
-	"AI_WEB_SCRAPPER/auth"
 	"AI_WEB_SCRAPPER/controllers"
 	"AI_WEB_SCRAPPER/initlizers"
 
@@ -28,12 +27,6 @@ func main() {
 	r.POST("/login", controllers.Login)
 	// jwt
 	// ✅ Grupa z autoryzacją JWT
-	web := r.Group("/web")
-	web.Use(auth.AuthHandler)
-	{
-		// 🔍 AI analiza
-		web.POST("/analyze", controllers.Analyze)
-	}
 	// ading task
 	r.Run(":8080")
 }
