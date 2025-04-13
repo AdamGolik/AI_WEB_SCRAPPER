@@ -12,9 +12,8 @@ import (
 
 // loading the env file
 func LoadEnv() {
-	err := godotenv.Load()
-	if err != nil {
-		panic(" faild to load the env file here is err " + err.Error())
+	if godotenv.Load() != nil {
+		panic(" faild to load the env file here is err " + godotenv.Load().Error())
 	}
 }
 
@@ -38,8 +37,7 @@ func ConnectDB() {
 }
 
 func CreateTables() {
-	err := DB.AutoMigrate(models.User{}, models.Request{})
-	if err != nil {
-		panic("Failed to create tables: " + err.Error())
+	if DB.AutoMigrate(models.User{}, models.Request{}) != nil {
+		panic("Failed to create tables: " + DB.AutoMigrate(models.User{}, models.Request{}).Error())
 	}
 }

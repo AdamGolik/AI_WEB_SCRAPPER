@@ -21,7 +21,7 @@ func Register(c *gin.Context) {
 		PasswordConfirm string `json:"passwordconfirm"`
 	}
 
-	if err := c.Bind(&body); err != nil {
+	if c.Bind(&body) != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
 		return
 	}
@@ -31,8 +31,8 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	hash, err := bcrypt.GenerateFromPassword([]byte(body.Password), bcrypt.DefaultCost)
-	if err != nil {
+	hash, name := bcrypt.GenerateFromPassword([]byte(body.Password), bcrypt.DefaultCost)
+	if name != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
 		return
 	}
@@ -59,7 +59,7 @@ func Login(c *gin.Context) {
 		Password string `json:"password"`
 	}
 
-	if err := c.Bind(&body); err != nil {
+	if c.Bind(&body) != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
 		return
 	}

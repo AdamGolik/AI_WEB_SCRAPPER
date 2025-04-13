@@ -19,3 +19,11 @@ type Request struct {
 	PriceMax *float32       `json:"pricemax"`
 	URLs     datatypes.JSON `json:"urls"` // ✅ JSON pole kompatybilne z PostgreSQL
 }
+type Comment struct {
+	Id          uint   `json:"id"`
+	Title       string `json:"title"`
+	Userid      uint   `json:"userid"`
+	Description string `json:"description"`
+	Dislike     uint   `json:"dislike"`
+	Like        uint   `json:"like"`
+}
