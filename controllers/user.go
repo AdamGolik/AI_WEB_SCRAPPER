@@ -12,7 +12,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func Register(c *gin.Context) {
+func RegisterUser(c *gin.Context) {
 	var body struct {
 		Name            string `json:"name"`
 		Lastname        string `json:"lastname"`
@@ -65,8 +65,8 @@ func Login(c *gin.Context) {
 	}
 
 	var user models.User
-	result := initlizers.DB.Where("email = ?", body.Email).First(&user)
-	if result.Error != nil {
+	data := initlizers.DB.Where("email = ?", body.Email).First(&user)
+	if data.Error != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid email or password"})
 		return
 	}

@@ -37,7 +37,7 @@ func ConnectDB() {
 }
 
 func CreateTables() {
-	if DB.AutoMigrate(models.User{}, models.Request{}) != nil {
-		panic("Failed to create tables: " + DB.AutoMigrate(models.User{}, models.Request{}).Error())
+	if DB.AutoMigrate(models.User{}, models.Todos{}) != nil {
+		panic("Failed to create tables: " + DB.AutoMigrate(models.User{}, models.Todos{}).Error())
 	}
 }
