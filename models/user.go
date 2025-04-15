@@ -16,6 +16,7 @@ type Todos struct {
 	Body   string `json:"body"`
 	Status Status `json:"status"`
 }
+
 type Status string
 
 const (
@@ -23,3 +24,4 @@ const (
 	InProgress Status = "inProgress"
 	Todo       Status = "todo"
 )
+

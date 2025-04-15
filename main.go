@@ -33,6 +33,13 @@ func main() {
 	{
 		a.GET("/GetAccount", controllers.GetAccount)
 		a.PUT("/UpdateAccount", controllers.UpdateAccount)
+		a.DELETE("/DeleteAccount", controllers.DeleteAccount)
+	}
+	t := r.Group("/tasks")
+	t.Use(auth.AuthHandler) // Middleware do autoryzacji JWT
+	{
+		t.POST("/add", controllers.AddTask)
+		t.GET("/get", controllers.GetTasks)
 	}
 	// ading task
 	r.Run(":8080")
