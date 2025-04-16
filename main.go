@@ -40,6 +40,7 @@ func main() {
 	{
 		t.POST("/add", controllers.AddTask)
 		t.GET("/get", controllers.GetTasks)
+		t.PUT("/update/:id", controllers.UpdateTask)
 	}
 	// ading task
 	r.Run(":8080")

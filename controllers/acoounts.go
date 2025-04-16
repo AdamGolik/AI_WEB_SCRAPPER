@@ -12,7 +12,7 @@ import (
 func GetAccount(c *gin.Context) {
 	userId := c.MustGet("userId")
 	var user models.User
-	if err := initlizers.DB.First(&user, userId).Error; err != nil {
+	if initlizers.DB.Preload("Todos").First(&user, userId).Error != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
 		return
 	}
