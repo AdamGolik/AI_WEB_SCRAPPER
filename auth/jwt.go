@@ -25,7 +25,7 @@ func AuthHandler(c *gin.Context) {
 	}
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		// Ustaw ID użytkownika w kontekście
-		c.Set("userId", uint(claims["sub"].(float64)))
+		c.Set("userId", int16(claims["sub"].(float64)))
 		c.Next()
 	} else {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
